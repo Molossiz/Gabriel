@@ -16,14 +16,41 @@
     </header>
     <section class="escola">
         <div class="escola-div-conteudo">
-            <h2 class="escola-titulo">Sobre a Escola</h2>
-            <p class="escola-texto-um">A Escola Premen foi fundada em 2010 e tem como objetivo ensinar Pensamento Computacional, através do ensino de  Programação.</p>
-            <p class="escola-texto-dois">A turma mais estudiosa e famosa é a Segunda Série A. Nós somos super unidos e a turma favorita por todos os professores e professoras que nos ajudam!</p>
+            <p class="escola-titulo" id="titulo" style="font-weight: bold; font-size: 2em;"></p>
+            <p class="escola-texto-um" id="texto-um"></p>
         </div>
         <img class="escola-imagem" src="Teacher-pana.png" alt="imagem que representa uma professora em sala de aula">
     </section>
+    
+    <script>
+        const titulo = "Sobre o Premen";
+        const textoUm = "A Escola Premen foi fundada em 2010 e tem como objetivo ensinar Pensamento Computacional, através do ensino de Programação. A turma mais estudiosa e famosa é a Segunda Série H. Nós somos super unidos e a turma favorita por todos os professores e professoras que nos ajudam!";
+    
+        let iTitulo = 0;
+        let iUm = 0;
+    
+        const escreverTextoTitulo = () => {
+            if (iTitulo < titulo.length) {
+                document.getElementById("titulo").innerHTML += titulo[iTitulo];
+                iTitulo++;
+                setTimeout(escreverTextoTitulo, 50);
+            }
+        };
+    
+        const escreverTextoUm = () => {
+            if (iUm < textoUm.length) {
+                document.getElementById("texto-um").innerHTML += textoUm[iUm];
+                iUm++;
+                setTimeout(escreverTextoUm, 40);
+            }
+        };
+    
+        escreverTextoTitulo();
+        escreverTextoUm();
+    </script>
+
     <section class="estudante">
-        <h2 class="estudante-titulo">Quem são nossos estudantes?</h2>
+        <h2 class="estudante-titulo">Confira alguns de nossos estudantes</h2>
         <div class="estudante-todos">
         <span></span>
         <div class="estudante-div">
@@ -93,11 +120,68 @@
             <a href="https://www.linkedin.com/in/thais-pianucci-benedicto-54a9a416/"><img class="estudante-icone" src="linkedin.png" alt="icone linkedin"></a>
             <a href="https://www.instagram.com/thaispianucci/"><img class="estudante-icone" src="instagram.png" alt="icone instagram"></a>
         </div>
-
+        <div id="back-to-top">
+            <a href="#">
+              <svg viewBox="0 0 24 24">
+                <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14 12 8 6 14z"></path>
+              </svg>
+            </a>
+          </div>
     </div>
     </section>
     <footer class="rodape">
         <img class="rodape-imagem"src="Group 2.png" alt="Imagem Rodapé">
     </footer>
+    <script>
+const studentSections = document.querySelectorAll('.estudante-div');
+
+const options = {
+  root: null,
+  threshold: 0.5, // Observe element when 50% visible
+};
+
+const observer = new IntersectionObserver(entries => {
+  const currentScrollPosition = window.scrollY;
+  const isScrollingUp = currentScrollPosition < lastScrollPosition;
+  lastScrollPosition = currentScrollPosition;
+
+  entries.forEach(entry => {
+    if (entry.isIntersecting && !isScrollingUp) {
+      entry.target.classList.add('animate');
+    } else {
+      entry.target.classList.remove('animate');
+    }
+  });
+});
+
+studentSections.forEach(section => {
+  observer.observe(section);
+});
+
+let lastScrollPosition = 0;
+    </script>
+    <script>
+        const backToTop = document.getElementById('back-to-top');
+
+        window.addEventListener('scroll', () => {
+  const scrollBottom = document.documentElement.scrollHeight - window.innerHeight;
+  const distanceFromBottom = scrollBottom - window.scrollY;
+
+  if (distanceFromBottom < 100) {
+    backToTop.classList.add('show');
+  } else {
+    backToTop.classList.remove('show');
+  }
+});
+
+backToTop.addEventListener('click', (event) => {
+  event.preventDefault();
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+    duration: 100000 // Tempo em milissegundos
+  });
+});
+    </script>
 </body>
 </html>

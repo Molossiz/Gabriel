@@ -1,10 +1,23 @@
-*{
+*
+
+{
     margin: 0;
     padding: 0;
 }
 body {
     font-family: 'Poppins', sans-serif;
 }
+
+::-webkit-scrollbar {
+    width: 10px;
+    background-color: #aaaaaa;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: #585858;
+    border-radius: 5px;
+  }
+  
 .cabecalho {
     background-color: #1A3F78;
     display: flex;
@@ -14,6 +27,16 @@ body {
 
 .cabecalho-imagem{
     width: 100%;
+    animation: entrada-cabecalho 1s forwards;
+}
+
+@keyframes entrada-cabecalho {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(0);
+    }
 }
 
 .cabecalho-lista-item{
@@ -24,10 +47,22 @@ body {
 
 .escola-imagem{
     width: 25%;
+    animation: entrada-escola 2s forwards;
+}
+
+@keyframes entrada-escola {
+    from {
+        opacity: 0;
+        transform: translateX(0%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0%);
+    }
 }
 
 .escola{
-    background-image: linear-gradient(#424E61,#16CFF8);
+    background-image: linear-gradient(#1A3F78,#16CFF8, #ffffff);
     color:white;
     display: flex;
     justify-content: center;
@@ -39,7 +74,6 @@ body {
     width: 35%;
 }
 
-
 .escola-titulo{
     padding: 24px 0;
 }
@@ -48,7 +82,7 @@ body {
     padding: 24px 0;
 }
 .estudante-imagem{
-    width: 120px;
+    width: 140px;
 }
 
 .estudante-icone{
@@ -80,3 +114,54 @@ body {
 .rodape-imagem{
     width: 100%;
 }
+
+.animate {
+    opacity: 1;
+    animation: student-animation 1s ease-in-out forwards;
+  }
+  
+  @keyframes student-animation {
+    from {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  #back-to-top {
+    position: fixed;
+    bottom: 10px;
+    right: 20px;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+  }
+  
+  #back-to-top a {
+    display: block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #4f72a7;
+    color: #ffffff;
+    text-align: center;
+    line-height: 40px;
+    font-size: 18px;
+    text-decoration: none;
+    svg path {
+        fill: #1A3F78;
+      }
+  }
+  
+  #back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  #back-to-top a:hover {
+    background-color: #688ec7;
+  }
