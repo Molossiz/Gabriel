@@ -1,9 +1,8 @@
-*
-
-{
+* {
     margin: 0;
     padding: 0;
 }
+
 body {
     font-family: 'Poppins', sans-serif;
 }
@@ -11,13 +10,13 @@ body {
 ::-webkit-scrollbar {
     width: 10px;
     background-color: #aaaaaa;
-  }
-  
-  ::-webkit-scrollbar-thumb {
+}
+
+::-webkit-scrollbar-thumb {
     background-color: #585858;
     border-radius: 5px;
-  }
-  
+}
+
 .cabecalho {
     background-color: #1A3F78;
     display: flex;
@@ -25,123 +24,129 @@ body {
     align-items: center;
 }
 
-.cabecalho-imagem{
+.cabecalho-imagem {
     width: 100%;
-    animation: entrada-cabecalho 1s forwards;
+    animation: descida 1s forwards;
 }
 
-@keyframes entrada-cabecalho {
-    from {
-        transform: translateY(-100%);
+@keyframes descida {
+    0% {
+      transform: translateY(-100px);
     }
-    to {
-        transform: translateY(0);
+    100% {
+      transform: translateY(0px);
     }
-}
+  }
 
-.cabecalho-lista-item{
+.cabecalho-lista-item {
     display: inline-block;
     margin: 0 16px;
     font-size: 16px;
 }
 
-.escola-imagem{
+.escola-imagem {
     width: 25%;
-    animation: entrada-escola 2s forwards;
+    animation: entrada-escola 8s forwards;
 }
 
 @keyframes entrada-escola {
     from {
         opacity: 0;
-        transform: translateX(0%);
+        transform: translateY(10px);
     }
     to {
         opacity: 1;
-        transform: translateX(0%);
+        transform: translateY(0);
     }
 }
 
-.escola{
-    background-image: linear-gradient(#1A3F78,#16CFF8, #ffffff);
-    color:white;
+.escola {
+    background-image: linear-gradient(#1A3F78, #16CFF8, #ffffff);
+    color: white;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 24px 0;
 }
 
-.escola-div-conteudo{
+.escola-div-conteudo {
     width: 35%;
 }
 
-.escola-titulo{
+.escola-titulo {
     padding: 24px 0;
 }
 
-.estudante{
+.estudante {
     padding: 24px 0;
 }
-.estudante-imagem{
+
+.estudante-imagem {
     width: 140px;
 }
 
-.estudante-icone{
+.estudante-icone {
     width: 24px;
     padding: 4px 8px;
 }
 
-.estudante-div{
+.estudante-div {
     text-align: center;
     padding: 16px 0;
 }
 
-.estudante-titulo{
+.estudante-titulo {
     text-align: center;
     padding: 50px 0;
 }
 
-.estudante-todos{
+.estudante-todos {
     display: grid;
     grid-template-columns: 20% 20% 20% 20% 20%;
 }
 
-.rodape{
+.rodape {
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
 
-.rodape-imagem{
+.rodape-imagem {
     width: 100%;
 }
 
 .animate {
     opacity: 1;
     animation: student-animation 1s ease-in-out forwards;
-  }
-  
-  @keyframes student-animation {
+}
+
+@keyframes student-animation {
     from {
-      opacity: 0;
-      transform: translateY(50px);
+        opacity: 0;
+        transform: translateY(50px);
     }
     to {
-      opacity: 1;
-      transform: translateY(0);
+        opacity: 1;
+        transform: translateY(0);
     }
-  }
+}
 
-  #back-to-top {
+#back-to-top {
     position: fixed;
     bottom: 10px;
     right: 20px;
     z-index: 1000;
-    opacity: 0;
+    opacity: 0; 
     visibility: hidden;
     transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
-  }
-  
-  #back-to-top a {
+}
+
+#back-to-top.show {
+    opacity: 1;
+    visibility: visible; 
+}
+
+#back-to-top a {
     display: block;
     width: 30px;
     height: 30px;
@@ -149,19 +154,192 @@ body {
     background-color: #4f72a7;
     color: #ffffff;
     text-align: center;
-    line-height: 40px;
+    line-height: 30px; 
     font-size: 18px;
     text-decoration: none;
-    svg path {
-        fill: #1A3F78;
-      }
-  }
-  
-  #back-to-top.show {
+}
+
+#back-to-top a:hover {
+    background-color: #688ec7;
+}
+
+.header-buttons {
+    position: absolute;
+    top: 20px; 
+    right: 10px; 
+    display: flex; 
+}
+
+.header-buttons button {
+    margin-left: 30px; 
+    opacity: 0; 
+    pointer-events: auto; 
+    cursor: pointer;
+}
+
+.container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+    max-width: 600px;
+    width: 80%;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow: hidden;
+    border: 2px solid #1A3F78;
+}
+
+.container-open {
+    display: block !important; 
+}
+
+.container::before {
+    content: attr(data-text); 
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 40px; 
+    background-color: #1A3F78; 
+    color: #fff; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #1A3F78;
+}
+
+.container h2 {
+    margin-top: -15px; 
+    position: relative; 
+    z-index: 1; 
+    color: #fff; 
+    text-align: left;
+    width: 500px;
+    font-size: larger;
+}
+
+.container[data-text]::before {
+    content: ''; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%; 
+    height: 100%; 
+    background-color: #b1b1b1; 
+    color: #fff; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 0; 
+}
+
+.container h2::before {
+    content: attr(data-text); 
+    position: relative; 
+    z-index: 1; 
+}
+
+.container p {
+    margin-top: 20px;
+}
+
+.header-buttons buttom {
+    opacity: 1; 
+}
+
+.container-close {
+    background-color: transparent;
+    position: absolute;
+    border: none;
+    top: 6px;
+    right: 10px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #333;
+    padding: 0px;
+    line-height: 1;
+    transition: color 0.3s ease; 
     opacity: 1;
     visibility: visible;
+}
+
+.close-icon {
+    color: #fff; 
+    font-weight: bold;
+  }
+
+  .container-close:hover .close-icon {
+    color: #555; 
+  }
+
+
+#fundo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    z-index: 999;
   }
   
-  #back-to-top a:hover {
-    background-color: #688ec7;
+  .animate-in {
+    animation: fadeIn 1s ease-in-out;
   }
+
+  .animate-out {
+    animation: fadeOut 1s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  } 
+
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+  
+  .container.animate-out {
+    animation: fadeOut 1s ease;
+  }
+
+  .remove-blur {
+    animation: fadeOut2 1s ease;
+  }
+  
+  @keyframes fadeOut2 {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
